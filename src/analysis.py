@@ -79,10 +79,20 @@ def main():
 
     results = analyzeFile(inputFile)
 
-    for result in results:
-        print(result)
+    
+    with open(outputFile, mode="w", newline="") as file:
+        writer = csv.writer(file)
+        
+        header = ["name","http1","http2","http3"]
+        writer.writerow(header)
+        
+        for result in results:
+            httpRequests = results.get(result)
+            print(result)
 
+            writer.writerow([result, httpRequests.http1, httpRequests.http2, httpRequests.http3,])
 
+            
 
 
 
